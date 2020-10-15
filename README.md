@@ -9,6 +9,8 @@
 
 https://docs.github.com/cn/
 
+[pluwen/china-domain-allowlist: 常用中国网站白名单，纯列表，用于 SwitchyOmega，控制不走代理的网站。](https://github.com/pluwen/china-domain-allowlist)
+
 [Search · anki](https://github.com/search?q=anki) 【也超级猛，7k储存库】
 
 [Search · 996](https://github.com/search?q=996) 
