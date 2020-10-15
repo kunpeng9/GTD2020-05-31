@@ -5,7 +5,7 @@
 
 03=等待事项=0=2020/10/15
 
-[tianruoyouxin (tianruo) / Repositories](https://github.com/tianruoyouxin?tab=repositories)
+[tianruoyouxin (tianruo) / Repositories](https://github.com/tianruoyouxin?tab=repositories)   【好像很久没有在github写代码了】
 
 为学生提供 dipakkr/a-to-z 资源 [dipakkr/A-to-Z-Resources-for-Students: ✅ Curated list of resources for college students](https://github.com/dipakkr/A-to-Z-Resources-for-Students)
 
@@ -13,12 +13,12 @@
 
 05=将来可能=1=2020/10/15
 
-[listen1 (Listen 1)](https://github.com/listen1)
+[listen1 (Listen 1)](https://github.com/listen1)【被封了* 集合的体验糟糕，没咋用了】
 
 [airingursb/bilibili-report: 🎈 B 站用户数据报告（Web App）](https://github.com/airingursb/bilibili-report)
 [Awesome-Windows/Awesome: 🎉 An awesome & curated list of best applications and tools for Windows.](https://github.com/Awesome-Windows/Awesome)
 
-[geohot (George Hotz)](https://github.com/geohot)
+[geohot (George Hotz)](https://github.com/geohot)【他研究的东西太高大上了，太复杂了，暂时目前看了也没用，看不懂】
 
 06=归档资料=0=2020/10/15
 
