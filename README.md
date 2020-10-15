@@ -4,6 +4,8 @@
 
 02=下一步行动=0=2020/10/15
 
+[996icu2020-10-15/README_CN.md at master · kunpeng9/996icu2020-10-15](https://github.com/kunpeng9/996icu2020-10-15/blob/master/README_CN.md)
+
 03=等待事项=0=2020/10/15
 
 [tianruoyouxin (tianruo) / Repositories](https://github.com/tianruoyouxin?tab=repositories)   【好像很久没有在github写代码了】
