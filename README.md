@@ -4,6 +4,8 @@
 02=下一步行动=0=2020/10/15
 
 03=等待事项=0=2020/10/15
+[tianruoyouxin (tianruo) / Repositories](https://github.com/tianruoyouxin?tab=repositories)
+
 为学生提供 dipakkr/a-to-z 资源 [dipakkr/A-to-Z-Resources-for-Students: ✅ Curated list of resources for college students](https://github.com/dipakkr/A-to-Z-Resources-for-Students)
 04=执行项目工作台=0=2020/10/15
 
@@ -13,6 +15,8 @@
 
 [airingursb/bilibili-report: 🎈 B 站用户数据报告（Web App）](https://github.com/airingursb/bilibili-report)
 [Awesome-Windows/Awesome: 🎉 An awesome & curated list of best applications and tools for Windows.](https://github.com/Awesome-Windows/Awesome)
+
+[geohot (George Hotz)](https://github.com/geohot)
 06=归档资料=0=2020/10/15
 
 2020-01-03=notion
