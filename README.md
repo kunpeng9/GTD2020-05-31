@@ -6,7 +6,9 @@
 
 [Search · 996](https://github.com/search?q=996) 
 
-[996icu2020-10-15/README_CN.md at master · kunpeng9/996icu2020-10-15](https://github.com/kunpeng9/996icu2020-10-15/blob/master/README_CN.md)
+[996.ICU/README_CN.md at master · 996icu/996.ICU](https://github.com/996icu/996.ICU/blob/master/README_CN.md)
+
+【这个是我自己的储存库，跳转不对！】[996icu2020-10-15/README_CN.md at master · kunpeng9/996icu2020-10-15](https://github.com/kunpeng9/996icu2020-10-15/blob/master/README_CN.md)
 
 03=等待事项=0=2020/10/15
 
