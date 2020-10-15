@@ -1,0 +1,126 @@
+https://github.com/kohler/gifsicle
+What is this?
+这是什么？
+Gifsicle is a command-line tool for creating, editing, and getting information about GIF images and animations. Making a GIF animation with gifsicle is easy:
+
+Gifsicle 是一个命令行工具，用于创建、编辑和获取有关 GIF 图像和动画的信息。使用 gifsicle 制作 GIF 动画很简单:
+
+gifsicle 小冰棍 --delay=10 --loop *.gif > anim.gif
+Extracting frames 提取帧 from animations is easy too: 动画也很简单:
+gifsicle 小冰棍 anim.gif '#0' > firstframe.gif
+You can also 你也可以edit 编辑 animations by replacing, deleting, or inserting frames: 通过替换、删除或插入帧动画:
+gifsicle 小冰棍 -b anim.gif --replace '#0' new.gif
+Some more gifsicle features:
+
+一些更多的小礼物特征:
+
+Batch mode 批处理模式 for changing GIFs in place. 改变 gif 的适当位置
+Prints detailed 详细的指纹information 信息 about GIFs, including comments. 关于 gif，包括评论
+Control over 控制interlacing, comments, looping, transparency... 交错，评论，循环，透明..
+Creates 创建well-behaved GIFs 表现良好的 gif: removes redundant colors, only uses local color tables if it absolutely has to (local color tables waste space and can cause viewing artifacts), etc. : 删除多余的颜色，只使用本地颜色表，如果它绝对必须(本地颜色表浪费空间，可能导致查看工件)等
+It can 它可以shrink colormaps 收缩彩色贴图 and change images to use the 更改图像以使用Web-safe palette 网络安全调色板 (or any colormap you choose). (或任何你选择的彩色图)
+Optimize 优化 your animations! This stores only the changed portion of each frame, and can radically shrink your GIFs. You can also use transparency to make them even smaller. Gifsicle’s optimizer is pretty powerful, and usually reduces animations to within a couple bytes of the best commercial optimizers. 你的动画！这种方法只存储每个帧的可变部分，可以极大地缩小 gif。你也可以使用透明度使它们变得更小。Gifsicle 的优化器非常强大，通常可以将动画减少到最好的商业优化器的几个字节之内
+Unoptimizing 不合时宜 animations, which makes them easier to edit. 动画，这使得他们更容易编辑
+A dumb name. 愚蠢的名字
+Two other programs are included with gifsicle: gifview is a lightweight animated-GIF viewer which can show animations as slideshows or in real time, and gifdiff compares two GIFs for identical visual appearance.
+
+另外两个程序包括 gifsicle: gifview 是一个轻量级的 gif 动画浏览器，可以显示动画作为幻灯片或实时，gifdiff 比较了两个 gif 的相同的视觉外观。
+
+Gifsicle is freely available. All you’ll need is an ANSI C compiler. I welcome changes, bug reports, complaints, etc.: mail me at ekohler@gmail.com!
+
+Gifsicle 免费提供。你所需要的就是一个 ANSI c 编译器。我欢迎更改，bug 报告，投诉等: 发邮件到 ekohler@gmail. com！
+
+Gifsicle questions
+问题
+Let the person who isn’t actually buying anything but is rather downloading something for free, beware.
+
+让那些实际上并没有购买任何东西，而是在免费下载东西的人注意了。
+
+Q: How do you pronounce “gifsicle”?
+A: “Yo’ mama.”
+
+问: “ gifsicle”怎么发音? 答: “你妈妈”
+
+Q: What about patents?
+A: The GIF image format had some patent problems in the past, but according to the Free Software Foundation, “The Software Freedom Law Center says that after 1 October 2006, there will be no significant patent claims interfering with employment of the GIF format.” [reference]
+
+问: 那么专利呢? 答: GIF 图像格式在过去存在一些专利问题，但根据自由软件基金会(Free Software Foundation)的说法，“软件自由法律中心表示，2006年10月1日之后，将不会出现影响 GIF 格式使用的重大专利权要求。”[参考]
+
+Other GIF tools
+其他 GIF 工具
+Whirlgif (an older version) merges single GIFs into animations, but cannot extract frames, edit animations, or use animations as input files. It either uses local color tables, or it changes input colors by only using colors from the first GIF frame. It also cannot handle complicated input transparency or more than 256 colors total. Gifsicle now uses its adaptive tree method for LZW encoding (thanks!) which makes it basically as fast as Whirlgif.
+
+Whirlgif (旧版本)将单个 gif 合并成动画，但不能提取帧、编辑动画或使用动画作为输入文件。它要么使用本地颜色表，要么仅使用第一个 GIF 帧中的颜色来更改输入颜色。它也不能处理复杂的输入透明度或超过256种颜色的总和。Gifsicle 现在使用自适应树方法进行 LZW 编码(谢谢!)基本上和 Whirlgif 一样快。
+
+GIFMerge is based on an earlier program called txtmerge. Like Whirlgif, it cannot extract frames or edit animations. It also cannot optimize animations. Resulting animations always have local color tables. Doesn’t deal with input transparency.
+
+Gif 合并是基于一个叫做 txtmerge 的早期程序。像 Whirlgif 一样，它不能提取帧或编辑动画。它也不能优化动画。生成的动画总是有局部颜色表。不处理输入透明性。
+
+Giftool does batch mode, comments, interlacing, and information, but doesn’t handle animations.
+
+Giftool 可以批处理模式、注释、隔行和信息，但不处理动画。
+
+Of course, there are hundreds of programs available for Macs and Windows boxes!
+
+当然，有上百种程序可用于 mac 和 Windows 机顶盒！
+
+There’s at least one GIF optimizer available via the Web. Submit a GIF URL to OptiView, and it spits out several impressively optimized versions for you to select from. As of mid-1998, gifsicle -O2 usually did about as well as GIF Wizard, OptiView’s predecessor.
+
+网络上至少有一个 GIF 优化器。向 OptiView 提交一个 GIF URL，它会显示几个令人印象深刻的优化版本供你选择。到1998年中期，gifsicle-O2的表现通常与 OptiView 的前身 GIF 向导差不多。
+
+Testimonials
+证词
+“I would even go so far as to say that it is stunning.”
+“我甚至可以说，它令人震惊。”
+
+Anne “Idiot” Dudfield 安妮・“白痴”・杜德菲尔德
+“[Gifsicle is] 10x faster than our previous converter.... The images are significantly smaller, too.”
+
+“(Gifsicle)比我们以前的转换器快10倍... ... 图像也要小得多。”
+
+Mike Hurwitz, Tumblr 迈克・赫维茨，Tumblr (another post 又一个帖子)
+“I just downloaded Gifsicle, and would like to make two small points:
+
+“我刚刚下载了 Gifsicle，希望提出两点:
+
+It is vastly better than GIFMerge and Whirlgif, in every way I could think of. Not least importantly, it reduced the GIF animations on my web site from 19MB total down to 11MB, which suddenly made my site much easier to navigate. 无论从哪个角度来看，它都比 gif 和 Whirlgif 要好得多。最不重要的是，它把我网站上的 GIF 动画总数从19 MB 减少到11 MB，这突然使我的网站更容易浏览
+Don’t be so hard on poor Anne, whoever she is; Gifsicle isn’t such a bad name (at least it’s memorable.)” 不要对可怜的安妮太苛刻，不管她是谁，吉夫西克莱这个名字并不坏(至少它让人难忘)。”
+Jim Bednar 吉姆・贝德纳
+“YESYESYESYESYES I HAVE A DENTIST APPOINT MENT THAT DAY!!!
+
+“是的，是的，是的，是的，我那天已经预约了一名牙医! ! ！
+
+IT’S A VERY IMPORTANT DENTISST APOINTMENT, AS THEY ARE FILLING A CAVITY FROM WHICH THE LAST FILLING HAD FALLEN OUT, AND IT IS GETTING SENSITIVE!!!
+
+这是一个非常重要的牙科治疗方法，因为他们正在填补一个最后一次填充物脱落的洞穴，而且变得越来越敏感！
+
+CAN’T MISS THAT DENTIST APPPOINTMENT!!! CAN’T RESCHEDULE IT, AS THEY ARE VERY BUSY AT THE DENTIST PLACE!!!!!!!!!
+
+不能错过牙医的预约! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ！
+
+YESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS”
+
+“”“”“”
+
+Anne “Idiot” Dudfield 安妮・“白痴”・杜德菲尔德
+“God bless you and gifsicle! It is the answer to my prayers and yearnings. Linux go bragh.”
+
+“上帝保佑你和 gifsicle! 这是我的祈祷和渴望的答案。 Linux 走吧。”
+
+Patrick Killelea 帕特里克・基利亚
+Testimonials Européens
+欧洲证据
+“...Gifsicle, manejador de gifs...”
+
+“ ... Gifsicle，manejador de gif... ”
+
+Urko Lusa
+Testimonialae Africanae
+非洲睾丸亚科
+“Ja-nee swaer. Ek het nog steeds nie die ding gedownload nie, maar dit lyk vir my sonder twyfel nat-kak.”
+
+“我要去偷东西，我的马从来没有下载过，但是我说过我要把它放在我儿子的屁股上。”
+
+Etienne Posthumus 艾蒂安・波斯图穆斯
+Etienne Posthumus’s “rough” translation: 艾蒂安 · 波斯图穆斯的“粗略”翻译: “Well old boy. I haven’t downloaded it yet, but it looks hot-shit to me without a doubt.” “嗯，老伙计，我还没下载呢，但是毫无疑问，它对我来说非常棒。”
+An independent translation: 一个独立的翻译: “Sure bro. I still haven’t downloaded the thing yet, but it looks to me without a doubt like “当然可以，兄弟，我还没下载呢，不过在我看来，毫无疑问wet 湿的 shit.” 妈的”
