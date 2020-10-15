@@ -15,6 +15,8 @@ https://docs.github.com/cn/
 
 03=等待事项=0=2020/10/15
 
+[Search · evernote](https://github.com/search?q=evernote) 【搜索结果有3000+十几年的积累，印象笔记真的太猛了】
+
 [tianruoyouxin (tianruo) / Repositories](https://github.com/tianruoyouxin?tab=repositories)   【好像很久没有在github写代码了】
 
 为学生提供 dipakkr/a-to-z 资源 [dipakkr/A-to-Z-Resources-for-Students: ✅ Curated list of resources for college students](https://github.com/dipakkr/A-to-Z-Resources-for-Students)
