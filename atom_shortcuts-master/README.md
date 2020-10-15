@@ -202,3 +202,49 @@ These are some packages I find useful, and their most useful key bindings. A lis
 | `apm upgrade --no-confirm` | Updates all locally installed packages without asking any questions |
 | `apm stars --install` | Installs/updates all packages that you have marked as a favorite (_starred_) in your Atom.io profile |
 | `apm publish minor` | If you're developing your own package, run this in the package's directory to publish a new version of the package, increasing the minor version number by one. |
+
+-
+麻省理工许可证(MIT)
+
+版权所有(c)2014年尼尔斯 · 温克勒
+
+现免费批准任何人士取得
+本软件及相关的文件档案(「软件」) ，以处理
+不受任何限制，包括但不限于
+使用、复制、修改、合并、发布、分发、再授权和/或出售
+软件的复本，并允许软件所属的人
+但须符合下列条件:
+
+上述版权声明及本许可声明应包括在所有声明中
+软件的副本或大部分内容。
+
+提供的软件是“原样” ，没有任何种类的保证，表示或
+暗示，包括但不限于 MERCHANTABILITY 的保证,
+适用于特定目的和不侵权。在任何情况下
+作者或版权持有人应对任何索赔、损害赔偿或其他损失负责
+法律责任，不论是在合同、侵权或其他诉讼中,
+与该软件或该软件的使用或其他交易
+软件。
+
+The MIT License (MIT)
+
+Copyright (c) 2014 Nils Winkler
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
