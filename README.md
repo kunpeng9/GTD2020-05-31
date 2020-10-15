@@ -13,7 +13,7 @@
 
 06=归档资料=0=2020/10/15
 
-2020-01-03|06=notion
+2020-01-03=notion
 创建于 2020/1/13; 目的：研究notion可视化代码，实现更多功能；类似 linmi
  公式例子=
  https://www.notion.so/linkwork/Notion-ac5b0c9db6b44667ac961980dc875a28
