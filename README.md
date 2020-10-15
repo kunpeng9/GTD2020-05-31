@@ -4,6 +4,8 @@
 
 02=下一步行动=0=2020/10/15
 
+[Search · 996](https://github.com/search?q=996) 
+
 [996icu2020-10-15/README_CN.md at master · kunpeng9/996icu2020-10-15](https://github.com/kunpeng9/996icu2020-10-15/blob/master/README_CN.md)
 
 03=等待事项=0=2020/10/15
