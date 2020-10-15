@@ -7,6 +7,8 @@
 
 https://docs.github.com/cn/
 
+[Search · anki](https://github.com/search?q=anki) 【也超级猛，7k储存库】
+
 [Search · 996](https://github.com/search?q=996) 
 
 [996.ICU/README_CN.md at master · 996icu/996.ICU](https://github.com/996icu/996.ICU/blob/master/README_CN.md)
