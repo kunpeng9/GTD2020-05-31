@@ -1,4 +1,14 @@
 # GitHub_GTD管理系统README.md 
+
+灵感来自【2020/11/12】=
+[Serverless 实战：打造个人阅读追踪系统 | 吕立青的博客](https://blog.jimmylv.info/2017-06-30-serverless-in-action-build-personal-reading-statistics-system/)
+
+[JimmyLv/reading: My Reading List | 参考博客文章「Serverless 实战：打造个人阅读追踪系统」：](https://github.com/JimmyLv/reading)
+
+【实践起来成本太高，有技术门槛，目前不能实践，搞一个项目初步模仿一下】
+
+【小心概念【notion】的所有的在一个【all in one】的理念;github就→github，不要加到滴答清单或者印象笔记或者我来，就在github上进行管理，打上不同的标签；】
+
 【注意，项目下的read.me文件不能改成其他的名字，否则编辑完了之后，项目下面会出现提示叫你创建，自动提示】【GTD2020-05-31创建将github的项目链接等放入滴答清单进行管理或者印象笔记等，实践证明都不可行，不好用，完全被搁置了】
 
 
