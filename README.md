@@ -67,3 +67,6 @@ https://docs.github.com/cn/
 
 08=共享繁华=0=2020/10/15
 
+好像已经不再使用这个阅读流程，可能换了体系，所以不再添加lssues了；
+![](https://raw.githubusercontent.com/kunpeng9/PicgoPicture2020-10-18/master/20201112%E5%90%95%E7%AB%8B%E9%9D%92%E7%9A%84%E9%98%85%E8%AF%BB%E6%B5%81%E7%A8%8B.png)
+
