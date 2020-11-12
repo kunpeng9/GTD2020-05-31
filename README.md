@@ -1,6 +1,8 @@
 # GitHub_GTD管理系统README.md 
 
 灵感来自【2020/11/12】=
+[JimmyLv/personal-reading-flow](https://github.com/JimmyLv/personal-reading-flow)
+
 [Serverless 实战：打造个人阅读追踪系统 | 吕立青的博客](https://blog.jimmylv.info/2017-06-30-serverless-in-action-build-personal-reading-statistics-system/)
 
 [JimmyLv/reading: My Reading List | 参考博客文章「Serverless 实战：打造个人阅读追踪系统」：](https://github.com/JimmyLv/reading)
