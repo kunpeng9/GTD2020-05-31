@@ -1,5 +1,7 @@
 # GitHub_GTD管理系统README.md 
 
+ 创建了就多用一段时间看，不急于改变策略，除非确定改变策略会更好【之前想过是不是应该用下其他的服务，插件或者网页啥的，或者其他的软件，但是还是放弃了，就只用github的简单的lssues功能+标签来管理】
+
 没有标签的=https://github.com/kunpeng9/GTD2020-05-31/issues?q=is%3Aopen+is%3Aissue+no%3Alabel
 
 出与统计+控制数量的需要，github上本项目还是不要打>2个都标签了，打的多了，那就和没打标签差不多；以增强执行力为准；
