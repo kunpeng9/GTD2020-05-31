@@ -1,6 +1,9 @@
 # GitHub_GTD管理系统README.md 
 
  创建了就多用一段时间看，不急于改变策略，除非确定改变策略会更好【之前想过是不是应该用下其他的服务，插件或者网页啥的，或者其他的软件，但是还是放弃了，就只用github的简单的lssues功能+标签来管理】
+ 
+ 备份地址在 https://gitee.com/kunpeng9/GTD2020-05-31 【担心将来万一美国发动制裁很可能用不了github，备份github上此项目到gitee。遗憾的是问题lssues无法备份】
+ ![](https://raw.githubusercontent.com/kunpeng9/PicgoPicture2020-10-18/master/20201206183925.png)
 
 没有标签的=https://github.com/kunpeng9/GTD2020-05-31/issues?q=is%3Aopen+is%3Aissue+no%3Alabel
 
