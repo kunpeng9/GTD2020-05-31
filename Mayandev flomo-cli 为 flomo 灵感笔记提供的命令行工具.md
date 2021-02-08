@@ -14,6 +14,12 @@ $ npm install flomo-cli -g
 $ yarn global add flomo-cli
 ```
 
+![](https://raw.githubusercontent.com/kunpeng9/PicgoPicture2020-10-18/master/20210208214810.png)
+
+Command 'yarn' not found, but can be installed with：
+sudo apt install cmdtest
+ 提示我没有安装yarn 
+ 
 ## [](#usage)Usage
 
 [![](https://camo.githubusercontent.com/9e22dde56dc7bede87590de7376db250b9f2705197f6ae25e7ae976d88cd1f0d/68747470733a2f2f6d6179616e6465762e6f73732d636e2d68616e677a686f752e616c6979756e63732e636f6d2f755069632f666c6f6d6f2e706e67)
