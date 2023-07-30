@@ -37,18 +37,8 @@
 02=下一步行动=0=2020/10/15
 
 https://docs.github.com/cn/
-
-[pluwen/china-domain-allowlist: 常用中国网站白名单，纯列表，用于 SwitchyOmega，控制不走代理的网站。](https://github.com/pluwen/china-domain-allowlist)
-
-[argenos/zotero-mdnotes: A Zotero plugin to export item metadata and notes as markdown files](https://github.com/argenos/zotero-mdnotes)
-
 [Search · anki](https://github.com/search?q=anki) 【也超级猛，7k储存库】
 
-[Search · 996](https://github.com/search?q=996) 
-
-[996.ICU/README_CN.md at master · 996icu/996.ICU](https://github.com/996icu/996.ICU/blob/master/README_CN.md)
-
-【这个是我自己的储存库，跳转不对！】[996icu2020-10-15/README_CN.md at master · kunpeng9/996icu2020-10-15](https://github.com/kunpeng9/996icu2020-10-15/blob/master/README_CN.md)
 
 03=等待事项=0=2020/10/15
 
@@ -57,12 +47,17 @@ https://docs.github.com/cn/
 为学生提供 dipakkr/a-to-z 资源 [dipakkr/A-to-Z-Resources-for-Students: ✅ Curated list of resources for college students](https://github.com/dipakkr/A-to-Z-Resources-for-Students)
 
 04=执行项目工作台=0=2020/10/15
+[argenos/zotero-mdnotes: A Zotero plugin to export item metadata and notes as markdown files](https://github.com/argenos/zotero-mdnotes)
 
 05=将来可能=1=2020/10/15
+[pluwen/china-domain-allowlist: 常用中国网站白名单，纯列表，用于 SwitchyOmega，控制不走代理的网站。](https://github.com/pluwen/china-domain-allowlist)
+[Search · 996](https://github.com/search?q=996) 
+
+[996.ICU/README_CN.md at master · 996icu/996.ICU](https://github.com/996icu/996.ICU/blob/master/README_CN.md)
+
+【这个是我自己的储存库，跳转不对！】[996icu2020-10-15/README_CN.md at master · kunpeng9/996icu2020-10-15](https://github.com/kunpeng9/996icu2020-10-15/blob/master/README_CN.md)
 
 [Search · RoamResearch](https://github.com/search?q=RoamResearch)
-
-[listen1 (Listen 1)](https://github.com/listen1)【被封了* 集合的体验糟糕，没咋用了】
 
 [airingursb/bilibili-report: 🎈 B 站用户数据报告（Web App）](https://github.com/airingursb/bilibili-report)
 
@@ -73,6 +68,7 @@ https://docs.github.com/cn/
 07=历史=每日收集箱=0=2020/10/15
 
 07=历史=资料=0=2020/10/15
+[listen1 (Listen 1)](https://github.com/listen1)【被封了* 集合的体验糟糕，没咋用了】
 
 08=共享繁华=0=2020/10/15
 
