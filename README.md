@@ -12,7 +12,7 @@
 
 没有标签的=https://github.com/kunpeng9/GTD2020-05-31/issues?q=is%3Aopen+is%3Aissue+no%3Alabel
 
-出与统计+控制数量的需要，github上本项目还是不要打>2个都标签了，打的多了，那就和没打标签差不多；以增强执行力为准；
+出与统计+控制数量的需要，github上本项目还是不要打>2个标签了，打的多了，那就和没打标签差不多；要强化、增强执行力【2023年07月30日更新=不知道为什么在github输入光标老是乱跑、搞的老是打错字】
 
 灵感来自【2020/11/12】=
 [JimmyLv/personal-reading-flow](https://github.com/JimmyLv/personal-reading-flow)
