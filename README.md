@@ -26,7 +26,7 @@
 
 【本项目(～￣(OO)￣)ブ是对吕立青博客内容的拙劣模仿；感谢他的启发【很早就有量化阅读还有系统化监控的想法，但是我一直不知道怎么实现它，也没有一个哪怕是大致上的,粗略的想法】
 
-[【直播回放】用TheBrain或Roam Research进行诗词关联+其他漫谈_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili](https://www.bilibili.com/video/BV1uT4y1L7mf)【之前就知道吕了，反复看这个视频的时候顺便去搜了一下，还有去github看了一下】
+[【直播回放】用TheBrain或Roam Research进行诗词关联+其他漫谈_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili](http://web.archive.org/web/20220905161436/https://www.bilibili.com/video/BV1ut4y1L7MF/)【之前就知道吕了，反复看这个视频的时候顺便去搜了一下，还有去github看了一下】
 
 【实践起来成本太高，本人机械电子工程的，非计算机专业；博客的内容实践起来有技术门槛，目前用不上，搞一个项目初步模仿一下】
 
