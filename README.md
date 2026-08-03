@@ -1,13 +1,23 @@
 # GitHub_GTD管理系统README.md 
 
+01=收集箱=0=2020/10/15
+
+02=下一步行动=0=2020/10/15
 全球研发投入2500强+1500家独角兽🦄合计4000家具体应该怎么安排
 还有很多不在榜单的怎么搞
 
-2023年03月25日20时02分=更新翻译书目录，之前不应该记录到知乎，没想到知乎居然这么麻烦！电脑发热太严重了、时不时就蓝屏
-用quicker动作复制文件名，卡的等了好半天，结果被删好几次，点击提交文章之后整个消失，没有自动保存的草稿
+官方的智能用的openai还是哪个根本不准的？
+https://platform.deepseek.com/usage【深度求索开放平台官网可以看到统计使用次数的，什么时候能够实现类似的。】
+https://liner.com/developers/docs/search-agent-api
+这个韩国的学术智能大模型准非常多，
+邀请链接，
+https://app.liner.com/login?referralKey=nId2Hoz9-Fm9Cd3_&utm_campaign=rac-13-referral-invite&utm_medium=referral&utm_source=product
 
- 创建了就多用一段时间看，不急于改变策略，除非确定改变策略会更好【之前想过是不是应该用下其他的服务，插件或者网页啥的，或者其他的软件，但是还是放弃了，就只用github的简单的lssues功能+标签来管理】
- 
+https://docs.github.com/cn/
+[Search · anki](https://github.com/search?q=anki) 【也超级猛，7k储存库】
+
+
+03=等待事项=0=2020/10/15
  备份地址在 https://gitee.com/kunpeng9/GTD2020-05-31 【担心将来万一美国发动制裁很可能用不了github，备份github上此项目到gitee。遗憾的是问题lssues无法备份】
  [希望增加对gitee的支持 · Issue #635 · webclipper/web-clipper](https://github.com/webclipper/web-clipper/issues/635)
  
@@ -17,38 +27,16 @@
 
 出与统计+控制数量的需要，github上本项目还是不要打>2个标签了，打的多了，那就和没打标签差不多；要强化、增强执行力【2023年07月30日更新=不知道为什么在github输入光标老是乱跑、搞的老是打错字】
 
-灵感来自【2020/11/12】=
-[JimmyLv/personal-reading-flow](https://github.com/JimmyLv/personal-reading-flow)
-
-[Serverless 实战：打造个人阅读追踪系统 | 吕立青的博客](https://blog.jimmylv.info/2017-06-30-serverless-in-action-build-personal-reading-statistics-system/)
-
-[JimmyLv/reading: My Reading List | 参考博客文章「Serverless 实战：打造个人阅读追踪系统」：](https://github.com/JimmyLv/reading)
-
-【本项目(～￣(OO)￣)ブ是对吕立青博客内容的拙劣模仿；感谢他的启发【很早就有量化阅读还有系统化监控的想法，但是我一直不知道怎么实现它，也没有一个哪怕是大致上的,粗略的想法】
-
-[【直播回放】用TheBrain或Roam Research进行诗词关联+其他漫谈_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili](https://www.bilibili.com/video/BV1uT4y1L7mf)【之前就知道吕了，反复看这个视频的时候顺便去搜了一下，还有去github看了一下】
-
-【实践起来成本太高，本人机械电子工程的，非计算机专业；博客的内容实践起来有技术门槛，目前用不上，搞一个项目初步模仿一下】
-
-【小心概念【notion】的所有的在1个【all in one】的理念;github就→github，不要加到滴答清单或者印象笔记或者我来，就在github上进行管理，打上不同的标签；】
-
-【注意，项目下的read.me文件不能改成其他的名字，否则编辑完了之后，项目下面会出现提示叫你创建，自动提示】【GTD2020-05-31创建将github的项目链接等放入滴答清单进行管理或者印象笔记等，实践证明都不可行，不好用，完全被搁置了】
-
-01=收集箱=0=2020/10/15
-
-02=下一步行动=0=2020/10/15
-
-https://docs.github.com/cn/
-[Search · anki](https://github.com/search?q=anki) 【也超级猛，7k储存库】
-
-
-03=等待事项=0=2020/10/15
 
 [tianruoyouxin (tianruo) / Repositories](https://github.com/tianruoyouxin?tab=repositories)   【好像很久没有在github写代码了】
 
 为学生提供 dipakkr/a-to-z 资源 [dipakkr/A-to-Z-Resources-for-Students: ✅ Curated list of resources for college students](https://github.com/dipakkr/A-to-Z-Resources-for-Students)
 
 04=执行项目工作台=0=2020/10/15
+[【直播回放】用TheBrain或Roam Research进行诗词关联+其他漫谈_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili](https://www.bilibili.com/video/BV1uT4y1L7mf)【之前就知道吕了，反复看这个视频的时候顺便去搜了一下，还有去github看了一下】
+
+【实践起来成本太高，本人机械电子工程的，非计算机专业；博客的内容实践起来有技术门槛，目前用不上，搞一个项目初步模仿一下】
+
 [argenos/zotero-mdnotes: A Zotero plugin to export item metadata and notes as markdown files](https://github.com/argenos/zotero-mdnotes)
 
 05=将来可能=1=2020/10/15
@@ -68,8 +56,28 @@ https://docs.github.com/cn/
 06=归档资料=0=2020/10/15
 
 07=历史=每日收集箱=0=2020/10/15
+2023年03月25日20时02分=更新翻译书目录，之前不应该记录到知乎，没想到知乎居然这么麻烦！电脑发热太严重了、时不时就蓝屏
+用quicker动作复制文件名，卡的等了好半天，结果被删好几次，点击提交文章之后整个消失，没有自动保存的草稿
+
+ 创建了就多用一段时间看，不急于改变策略，除非确定改变策略会更好【之前想过是不是应该用下其他的服务，插件或者网页啥的，或者其他的软件，但是还是放弃了，就只用github的简单的lssues功能+标签来管理】
+ 
+
+灵感来自【2020/11/12】=
+[JimmyLv/personal-reading-flow](https://github.com/JimmyLv/personal-reading-flow)
+
+[Serverless 实战：打造个人阅读追踪系统 | 吕立青的博客](https://blog.jimmylv.info/2017-06-30-serverless-in-action-build-personal-reading-statistics-system/)
+
+[JimmyLv/reading: My Reading List | 参考博客文章「Serverless 实战：打造个人阅读追踪系统」：](https://github.com/JimmyLv/reading)
+
+【本项目(～￣(OO)￣)ブ是对吕立青博客内容的拙劣模仿；感谢他的启发【很早就有量化阅读还有系统化监控的想法，但是我一直不知道怎么实现它，也没有一个哪怕是大致上的,粗略的想法】
+
 
 07=历史=资料=0=2020/10/15
+
+【小心概念【notion】的所有的在1个【all in one】的理念;github就→github，不要加到滴答清单或者印象笔记或者我来，就在github上进行管理，打上不同的标签；】
+
+【注意，项目下的read.me文件不能改成其他的名字，否则编辑完了之后，项目下面会出现提示叫你创建，自动提示】【GTD2020-05-31创建将github的项目链接等放入滴答清单进行管理或者印象笔记等，实践证明都不可行，不好用，完全被搁置了】
+
 [listen1 (Listen 1)](https://github.com/listen1)【被封了* 集合的体验糟糕，没咋用了】
 
 08=共享繁华=0=2020/10/15
