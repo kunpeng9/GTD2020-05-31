@@ -1,0 +1,178 @@
+GitHub Actions Jekyll 部署工作流完整解读
+ 
+这是一份官方示例 workflow YAML 文件，作用：代码推送到  master  分支时，自动编译 Jekyll 静态网站，部署到 GitHub Pages，生成可公开访问网页，也支持手动点击按钮触发部署。
+ 
+yaml
+  
+
+# Sample workflow for building and deploying a Jekyll site to GitHub Pages
+# 示例工作流：构建并将 Jekyll 站点部署到 GitHub Pages
+name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+# 工作流名称：使用预安装 Pages 依赖部署 Jekyll
+ 
+ 
+触发条件  on: 
+ 
+yaml
+  
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["master"]   # 向 master 分支推送代码，自动执行本工作流
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:      # 允许在 GitHub仓库 → Actions 页面，手动点击按钮运行工作流
+ 
+ 
+权限配置  permissions 
+ 
+yaml
+  
+
+permissions:
+  contents: read          # GITHUB‑token 读取仓库源码权限
+  pages: write            # 开启 Pages 站点写入、发布权限
+  id-token: write         # 用于 Pages 部署安全鉴权凭证
+ 
+ 
+GitHub 内置变量  GITHUB_TOKEN ，Actions 执行时自动生成，不需要你填个人密钥。
+ 
+并发控制  concurrency 
+ 
+yaml
+  
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+ 
+ 
+-  group: "pages" ：属于 pages 这一组任务
+-  cancel‑in‑progress: false ：不要杀掉正在跑中的部署任务
+ 
+场景：短时间多次 push，排队的任务会跳过，但已经开始编译部署的任务必须跑完，防止线上网站中途损坏。
+ 
+jobs：任务分为两大部分 build（构建） + deploy（发布）
+ 
+job1 build：编译构建 Jekyll 站点
+ 
+yaml
+  
+
+  build:
+    runs-on: ubuntu-latest   # 使用 Ubuntu 最新虚拟机环境运行
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        # step1：把仓库代码下载到虚拟机
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        # step2：配置 GitHub Pages 环境参数
+
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./          # 源码根目录
+          destination: ./_site # jekyll编译输出静态文件输出到 _site文件夹
+        # step3：调用官方封装action，自动执行jekyll build，不需要自己装ruby环境
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        # step4：把编译完成的 _site 静态网页打包成构件(artifact)，传给下一个deploy任务
+ 
+ 
+job2 deploy：真正上线发布
+ 
+yaml
+  
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      # 绑定 github‑pages 环境变量，部署完成后输出网站访问地址
+    runs-on: ubuntu-latest
+    needs: build       # 依赖 build任务，必须构建成功之后，才执行部署
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+        # 读取上一步的构件artifact，把静态网页正式发布到 GitHub Pages
+ 
+ 
+整体完整流程
+ 
+1. 代码 push 到 master 分支 / 手动在 Actions页面点击运行
+2. 分配 Ubuntu 虚拟机，拉取仓库全部源码
+3. 配置 pages 环境，执行 Jekyll 编译，生成纯静态网页文件输出  ./_site 
+4. 将编译产物打包为工件，跨job传递
+5. build任务全部成功，才进入 deploy
+6. 将静态文件上传GitHub Pages服务，生成公开网页链接
+ 
+关键注意点
+ 
+1. 分支是  master ，很多新版GitHub仓库默认主分支叫  main ，如果你的仓库是main，这里要改成  branches: ["main"] ，否则推送不会触发CI。
+2.  actions/jekyll‑build‑pages@v1  是官方封装，不需要写gem、bundle命令，内部自带jekyll环境。
+3. 两个job分离：build负责本地编译打包；deploy负责上传发布； needs: build  做任务依赖。
+4. concurrency配置：生产网站，不中断正在运行的部署，适合博客、文档站。
+ 
+和传统写法对比
+ 
+旧写法需要自己配置ruby、bundle install、bundle exec jekyll build；
+这套官方action封装，不需要管理Ruby版本，开箱即用，专门适配GitHub Pages。
+ 
+如果你需要，我可以给你一份修改后的完整yaml：适配main分支，附带注释精简版本。
+
+# Sample workflow for building and deploying a Jekyll site to GitHub Pages
+name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
