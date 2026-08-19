@@ -1,0 +1,165 @@
+GitHub Actions 解读：部署静态内容到 GitHub Pages
+ 
+这份是通用静态页面部署工作流，不需要 Jekyll，直接把仓库里现成静态文件（html/css/js）发布到 GitHub Pages。
+ 
+和上一段Jekyll版本最大区别：没有Jekyll编译步骤，直接上传源码作为网页产物
+ 
+yaml
+  
+
+# Simple workflow for deploying static content to GitHub Pages
+# 简单工作流：将静态内容部署到 Pages
+name: Deploy static content to Pages
+# 工作流显示名称：部署静态内容到 Pages
+ 
+ 
+触发条件  on: 
+ 
+yaml
+  
+
+on:
+  push:
+    branches: ["master"] # 向 master 分支推送代码，自动触发CI
+
+  workflow_dispatch: # 在仓库Actions标签页，支持手动点击按钮执行部署
+ 
+ 
+权限 permissions
+ 
+yaml
+  
+
+permissions:
+  contents: read    # GITHUB_TOKEN 读取仓库源码
+  pages: write      # 拥有Pages站点写入发布权限
+  id-token: write   # 安全身份凭证，用于Pages部署鉴权
+ 
+ 
+GitHub自动注入 GITHUB_TOKEN ，无需配置个人Access Token。
+ 
+并发控制 concurrency
+ 
+yaml
+  
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+ 
+ 
+- 归属于 pages 任务组；
+-  cancel‑in‑progress: false ：已经正在跑的部署任务不强行终止；
+- 短时间多次推送：排队的旧任务直接跳过，正在执行的部署执行完毕，避免网页部署一半损坏。适合正式线上站点。
+ 
+jobs 任务
+ 
+对比上一份Jekyll脚本：只有一个deploy任务，没有单独build构建Job，全部步骤在同一个虚拟机执行。
+ 
+yaml
+  
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      # 绑定github‑pages部署环境，部署完成输出网页访问地址
+    runs-on: ubuntu-latest # 使用Ubuntu最新虚拟机运行Action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        # 步骤1：把仓库master分支全部代码下载到虚拟机
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        # 步骤2：初始化GitHub Pages部署环境参数
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+          # 步骤3：【关键点】把仓库根目录`.`全部文件打包为部署构件artifact
+          # 直接上传整个仓库文件，不会做编译！index.html必须放在仓库根目录！
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+        # 步骤4：将上面打包的artifact正式发布到GitHub Pages服务
+ 
+ 
+完整运行流程
+ 
+1. 往 master 分支push代码，或者在Actions页面手动触发
+2. 启动Ubuntu虚拟机，拉取仓库全部源代码
+3. 配置Pages环境
+4. 直接把仓库根目录全部文件作为网站资源打包（没有任何编译）
+5. 将打包产物上传GitHub Pages，生成公开访问网址
+ 
+⚠️重要坑点
+ 
+1. 主分支问题：如果你的仓库默认分支是 main ，必须把  branches: ["master"]  修改为  branches: ["main"] ，否则推送不会触发工作流。
+2. 没有编译！
+- 此脚本不会运行Jekyll/Vite/Webpack。
+- 如果你是Vue/React项目，不能直接用这份yaml，必须增加构建步骤，先生成dist产物，再上传dist文件夹。
+3.  path: '.' 代表上传整个仓库；如果你的静态网页输出在 dist 文件夹，这里改成  path: './dist' 。
+4. 网站入口文件必须是  index.html ，放在你指定path的目录下。
+ 
+和上一份Jekyll版本对比
+ 
+项目 Jekyll版本 本静态通用版本 
+编译环节 内置jekyll自动编译生成_site 无编译，直接上传现成静态文件 
+Job划分 build构建 + deploy部署两个job 单job，全部流程一体执行 
+适用场景 Jekyll博客 原生html、已经编译好的dist静态站 
+ 
+使用场景举例
+ 
+适合：手写HTML网页、导出的静态文档、纯前端已经编译完毕的产物。
+不适合：需要编译的Jekyll、Vite、React项目（缺少build步骤）。
+ 
+如果你需要，我可以给一份适配Vite/React项目的完整yaml示例。
+
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
