@@ -1,0 +1,35 @@
+
+
+以下为支持的资助模式平台
+ 
+github: # 填写最多4个开启GitHub赞助功能的用户名，示例：[user1, user2]
+patreon: # 填写单个 Patreon 用户名
+open_collective: # 填写单个 Open Collective 用户名
+ko_fi: # 填写单个 Ko‑fi 用户名
+tidelift: # 填写单个 Tidelift 平台名/包名，示例：npm/babel
+community_bridge: # 填写单个 Community Bridge 项目名称，示例：cloud‑foundry
+liberapay: # 填写单个 Liberapay 用户名
+issuehunt: # 填写单个 IssueHunt 用户名
+lfx_crowdfunding: # 填写单个 LFX Crowdfunding 项目名称，示例：cloud‑foundry
+polar: # 填写单个 Polar 用户名
+buy_me_a_coffee: # 填写单个 Buy Me a Coffee 用户名
+thanks_dev: # 填写单个 thanks.dev 用户名
+custom: # 填写最多4个自定义赞助链接，示例：['链接1', '链接2']
+ 
+说明：这是 GitHub  .github/FUNDING.yml  配置文件官方注释翻译，用于配置开源项目赞助渠道，#后面为注释，不会生效。
+
+# These are supported funding model platforms
+
+github: # Replace with up to 4 GitHub Sponsors-enabled usernames e.g., [user1, user2]
+patreon: # Replace with a single Patreon username
+open_collective: # Replace with a single Open Collective username
+ko_fi: # Replace with a single Ko-fi username
+tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
+community_bridge: # Replace with a single Community Bridge project-name e.g., cloud-foundry
+liberapay: # Replace with a single Liberapay username
+issuehunt: # Replace with a single IssueHunt username
+lfx_crowdfunding: # Replace with a single LFX Crowdfunding project-name e.g., cloud-foundry
+polar: # Replace with a single Polar username
+buy_me_a_coffee: # Replace with a single Buy Me a Coffee username
+thanks_dev: # Replace with a single thanks.dev username
+custom: # Replace with up to 4 custom sponsorship URLs e.g., ['link1', 'link2']
