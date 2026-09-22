@@ -1,5 +1,9 @@
 【我记得之前已经提交更新过一次，怎么还有类似的提示，似乎没有提交成功】# Contributor Covenant Code of Conduct
 
+
+https://github.com/settings/repositories   kunpeng9/GTD2020-05-31 1.04 MB  0 collaborators
+写了这么长时间，居然不到2mb。
+
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our
