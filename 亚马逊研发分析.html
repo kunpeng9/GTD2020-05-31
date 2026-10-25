@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>亚马逊研发分析</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f4f2ed; --paper:#fffdf8; --ink:#181a1b; --muted:#5c5e5e;
+      --line:#d8d4ca; --line-strong:#a7a196; --accent:#bd471f; --accent-soft:#f4dfd5;
+      --amber:#d99716; --green:#216b52; --blue:#2c5f86; --shadow:0 18px 55px rgba(38,32,24,.08);
+      --sans:"Noto Sans SC",sans-serif; --serif:"Noto Serif SC",serif;
+    }
+    @media(prefers-color-scheme:dark){
+      :root{--bg:#111313;--paper:#181b1b;--ink:#f2efe7;--muted:#b9b7af;--line:#373a38;--line-strong:#666962;--accent:#ef7a4d;--accent-soft:#3b241d;--amber:#f1b843;--green:#68bd9b;--blue:#78acd2;--shadow:0 18px 60px rgba(0,0,0,.25)}
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.72}
+    a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+    button{font:inherit}
+    .shell{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .mast{padding:72px 0 46px;border-bottom:1px solid var(--line)}
+    .kicker{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin:0 0 18px}
+    h1{font-family:var(--serif);font-size:clamp(38px,7vw,76px);line-height:1.08;letter-spacing:-.035em;margin:0;max-width:1000px}
+    .deck{font-size:clamp(17px,2vw,22px);line-height:1.65;color:var(--muted);max-width:840px;margin:24px 0 0}
+    .meta{display:flex;gap:14px 28px;flex-wrap:wrap;margin-top:30px;padding-top:22px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+    .meta strong{color:var(--ink)}
+    .nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+    .nav-inner::-webkit-scrollbar{display:none}
+    .nav a{white-space:nowrap;text-decoration:none;font-size:13px;font-weight:700;color:var(--muted);padding:7px 12px;border-radius:99px}
+    .nav a:hover,.nav a:focus{background:var(--paper);color:var(--accent);outline:none}
+    section{padding:70px 0;border-bottom:1px solid var(--line);scroll-margin-top:60px}
+    .section-head{display:grid;grid-template-columns:130px 1fr;gap:22px;margin-bottom:34px}
+    .num{font-family:var(--serif);font-size:18px;color:var(--accent);font-weight:900}
+    h2{font-family:var(--serif);font-size:clamp(28px,4vw,46px);line-height:1.2;margin:0;letter-spacing:-.02em}
+    .section-intro{grid-column:2;color:var(--muted);font-size:17px;max-width:780px;margin:0}
+    .verdict{display:grid;grid-template-columns:1.15fr .85fr;gap:24px}
+    .verdict-main{background:var(--ink);color:var(--bg);padding:34px 36px;box-shadow:var(--shadow)}
+    @media(prefers-color-scheme:dark){.verdict-main{background:#efebe2;color:#161919}}
+    .verdict-main .label{color:var(--accent);font-weight:800;font-size:13px;letter-spacing:.08em}
+    .verdict-main h3{font-family:var(--serif);font-size:clamp(26px,4vw,42px);line-height:1.28;margin:12px 0 18px}
+    .verdict-main p{margin:0;opacity:.82}
+    .metric-stack{display:grid;gap:10px}
+    .metric{background:var(--paper);padding:20px 22px;border-top:4px solid var(--accent)}
+    .metric b{font-family:var(--serif);font-size:28px;display:block;line-height:1.2}
+    .metric span{font-size:13px;color:var(--muted)}
+    .metric cite{display:block;font-style:normal;font-size:11px;color:var(--muted);margin-top:8px}
+    .definition-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .definition{background:var(--paper);padding:25px}
+    .definition .tag{display:inline-block;font-size:12px;font-weight:800;color:var(--accent);border-bottom:2px solid var(--accent);margin-bottom:12px}
+    .definition h3{font-size:20px;line-height:1.4;margin:0 0 10px}
+    .definition p{font-size:14px;color:var(--muted);margin:0}
+    .quote{margin-top:24px;padding:24px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);font-family:var(--serif);font-size:clamp(20px,3vw,31px);line-height:1.65}
+    .quote small{display:block;font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:12px}
+    .chart-wrap{background:var(--paper);padding:28px;box-shadow:var(--shadow)}
+    .chart-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:22px}
+    .chart-title h3{margin:0;font-size:20px}
+    .chart-title span{font-size:12px;color:var(--muted)}
+    .bars{display:grid;gap:15px}
+    .bar-row{display:grid;grid-template-columns:110px 1fr 78px;gap:14px;align-items:center;font-size:14px}
+    .bar-name{font-weight:700}
+    .track{height:17px;background:color-mix(in srgb,var(--line) 65%,transparent);overflow:hidden}
+    .fill{height:100%;background:var(--accent);width:var(--w)}
+    .bar-row:nth-child(2) .fill{background:var(--blue)}
+    .bar-row:nth-child(3) .fill{background:var(--green)}
+    .bar-row:nth-child(4) .fill,.bar-row:nth-child(5) .fill{background:var(--amber)}
+    .bar-val{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+    .chart-note{font-size:12px;color:var(--muted);margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+    .compare-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+    .compare-item{padding:18px;background:var(--paper)}
+    .compare-item b{display:block;font-size:21px;font-family:var(--serif)}
+    .compare-item span{font-size:12px;color:var(--muted)}
+    .discourse{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .lexicon{background:var(--paper);padding:28px}
+    .lexicon h3{font-family:var(--serif);font-size:24px;margin:0 0 18px}
+    .word{display:grid;grid-template-columns:105px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+    .word:first-of-type{border-top:0}
+    .word strong{color:var(--accent)}
+    .word p{margin:0;font-size:14px;color:var(--muted)}
+    .lens-list{display:grid;gap:12px}
+    .lens{padding:22px 24px;background:var(--paper);display:grid;grid-template-columns:36px 1fr;gap:15px}
+    .lens .idx{font-family:var(--serif);color:var(--accent);font-size:22px}
+    .lens h4{margin:0 0 6px;font-size:17px}
+    .lens p{margin:0;color:var(--muted);font-size:14px}
+    .lens a{font-size:12px}
+    .systems{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .system{background:var(--paper);padding:22px;min-height:165px;grid-column:span 4}
+    .system.wide{grid-column:span 6}
+    .system .type{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.06em}
+    .system h3{font-family:var(--serif);font-size:23px;margin:8px 0 8px}
+    .system p{font-size:13px;color:var(--muted);margin:0}
+    .system strong{color:var(--ink)}
+    .pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:20px 0 0;border:1px solid var(--line)}
+    .stage{padding:20px 16px;background:var(--paper);position:relative;border-right:1px solid var(--line)}
+    .stage:last-child{border-right:0}
+    .stage::after{content:"→";position:absolute;right:-9px;top:22px;background:var(--paper);color:var(--accent);z-index:1;font-weight:900}
+    .stage:last-child::after{display:none}
+    .stage b{display:block;font-size:14px;margin-bottom:5px}
+    .stage span{font-size:12px;color:var(--muted)}
+    .pro-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .pro-card{background:var(--paper);padding:26px 28px}
+    .pro-card h3{font-family:var(--serif);font-size:23px;margin:0 0 12px}
+    .pro-card ul{margin:0;padding-left:1.2em;color:var(--muted);font-size:14px}
+    .pro-card li+li{margin-top:8px}
+    .takeaway{margin-top:18px;background:var(--accent-soft);padding:24px 28px;border-left:5px solid var(--accent)}
+    .takeaway strong{display:block;font-family:var(--serif);font-size:21px;margin-bottom:5px}
+    .caveats{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .caveats ol{margin:0;padding-left:1.4em}
+    .caveats li+li{margin-top:14px}
+    .source-panel{background:var(--paper);padding:24px}
+    .source-panel h3{margin:0 0 12px;font-size:18px}
+    .source-panel a{display:block;padding:9px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+    .source-panel a:hover{color:var(--accent)}
+    footer{padding:30px 0 55px;color:var(--muted);font-size:12px}
+    .evidence{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .chip{font-size:11px;padding:5px 9px;border:1px solid var(--line-strong);border-radius:99px}
+    .chip.official{color:var(--green)}.chip.estimate{color:var(--blue)}.chip.unknown{color:var(--accent)}
+    .source-link{color:var(--accent);font-size:12px}
+    @media(max-width:800px){
+      .shell{width:min(100% - 24px,1180px)}
+      .mast{padding:44px 0 34px}
+      .section-head{grid-template-columns:1fr;gap:6px}.section-intro{grid-column:1}
+      .nav-inner{overflow-x:visible;flex-wrap:wrap;gap:4px 6px}.nav a{padding:6px 9px}
+      section{padding:50px 0}.verdict,.discourse,.caveats{grid-template-columns:1fr}
+      .definition-grid{grid-template-columns:1fr}.compare-strip{grid-template-columns:1fr 1fr}
+      .system,.system.wide{grid-column:span 6}.pipeline{grid-template-columns:1fr}
+      .stage{border-right:0;border-bottom:1px solid var(--line)}.stage:last-child{border-bottom:0}
+      .stage::after{content:"↓";right:auto;left:20px;top:auto;bottom:-12px;padding:0 3px}
+      .pro-grid{grid-template-columns:1fr}.bar-row{grid-template-columns:88px 1fr 66px;gap:8px}
+    }
+    @media(max-width:520px){
+      h1{font-size:39px}.deck{font-size:16px}.meta{display:grid;gap:8px}.verdict-main{padding:27px 24px}
+      .chart-wrap{padding:20px 16px}.chart-title{display:block}.chart-title span{display:block;margin-top:5px}
+      .compare-strip{grid-template-columns:1fr}.system,.system.wide{grid-column:span 12}.word{grid-template-columns:1fr;gap:4px}
+      .bar-row{grid-template-columns:78px 1fr 58px;font-size:12px}.track{height:14px}.source-panel{padding:19px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header class="mast shell">
+    <p class="kicker">定义 · 话语 · 技术系统 · 专业路径</p>
+    <h1>亚马逊“全球研发第一”，<br>这句话究竟说了什么？</h1>
+    <p class="deck">从语文的定义、叙事与论证入手，拆开一个常被简化的商业判断；再把它接回仓储机器人、机电系统与 AI 推理经济学。</p>
+    <div class="meta">
+      <span><strong>研究日期</strong> 2026-10-12</span>
+      <span><strong>数据口径</strong> FY2024–FY2025</span>
+      <span><strong>核心来源</strong> EU JRC · SEC filings · 中文财经媒体</span>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="章节导航"><div class="shell nav-inner">
+    <a href="#verdict">结论</a><a href="#definition">定义陷阱</a><a href="#numbers">数字对照</a><a href="#discourse">语文视角</a><a href="#robotics">机器人</a><a href="#tokens">词元经济</a><a href="#path">专业路径</a><a href="#limits">边界与来源</a>
+  </div></nav>
+
+  <main class="shell">
+    <section id="verdict">
+      <div class="section-head"><div class="num">01</div><h2>结论先行：成立，但必须带脚注</h2><p class="section-intro">“第一”不是一个裸事实，而是“谁统计、统计什么、统计哪一年”的合成命题。</p></div>
+      <div class="verdict">
+        <article class="verdict-main">
+          <div class="label">VERDICT / 判断</div>
+          <h3>按欧盟委员会 2025 Scoreboard 的估算，亚马逊是全球企业研发投入第 1 名。</h3>
+          <p>但亚马逊没有单独披露纯研发费用。它披露的是更宽的“Technology and infrastructure”，其中还包含数据中心折旧、租金、公用事业和门店技术。严谨表述应是：<strong>“欧盟委员会估算亚马逊为全球最大企业研发投资者。”</strong></p>
+        </article>
+        <div class="metric-stack">
+          <div class="metric"><b>€65B</b><span>欧盟 JRC 对亚马逊 FY2024 研发投入的估算</span><cite>官方排名 / 2025-12-22</cite></div>
+          <div class="metric"><b>$88.5B</b><span>Amazon FY2024 “技术与基础设施”披露额，不等于纯研发</span><cite>SEC 10-K / FY2024</cite></div>
+          <div class="metric"><b>≈ 1.8×</b><span>$88.5B 相对 Alphabet 披露研发 $49.3B</span><cite>reported-line basis / FY2024</cite></div>
+        </div>
+      </div>
+      <div class="evidence"><span class="chip official">官方披露</span><span class="chip estimate">权威估算</span><span class="chip unknown">未知 / 未拆分</span></div>
+    </section>
+
+    <section id="definition">
+      <div class="section-head"><div class="num">02</div><h2>先做“词义辨析”，再谈排名</h2><p class="section-intro">语文训练最有价值的地方，是识别同一个词在不同文本里的外延是否一致。</p></div>
+      <div class="definition-grid">
+        <article class="definition"><span class="tag">亚马逊财报</span><h3>Technology and infrastructure</h3><p>研发人员薪酬、门店技术与服务器/网络/数据中心折旧、租金、公用事业等合并呈现。它是宽口径经营费用，不是纯研发。</p></article>
+        <article class="definition"><span class="tag">同业财报</span><h3>Research and development</h3><p>Alphabet、Meta、Apple、Microsoft 等直接披露 R&amp;D，因此看起来更“纯”，却不能与亚马逊的宽口径直接等号。</p></article>
+        <article class="definition"><span class="tag">欧盟榜单</span><h3>Estimated R&amp;D investment</h3><p>JRC 首次把亚马逊纳入 2025 榜单，估算 €65B，约相当于其披露线的 79%。精确推导方法未从报告 PDF 中核验。</p></article>
+      </div>
+      <blockquote class="quote">真正严谨的标题不是“亚马逊研发 885 亿美元”，而是“亚马逊披露技术与基础设施支出 885 亿美元；欧盟估算其中约 650 亿欧元可视为研发”。<small>来源：Amazon FY2024 10-K；EU JRC 2025 Scoreboard。金额口径与币种不同，不作直接换算相加。</small></blockquote>
+    </section>
+
+    <section id="numbers">
+      <div class="section-head"><div class="num">03</div><h2>绝对规模第一，不等于研发强度第一</h2><p class="section-intro">图中均为各公司 FY2024 自身披露的费用线；亚马逊的项目口径比其他公司更宽。</p></div>
+      <div class="chart-wrap" role="img" aria-label="2024 财年亚马逊、Alphabet、Meta、Apple 和 Microsoft 研发或技术费用对比条形图">
+        <div class="chart-title"><h3>FY2024 披露线对照</h3><span>十亿美元 · Amazon 为 Technology &amp; infrastructure</span></div>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-name">Amazon*</div><div class="track"><div class="fill" style="--w:100%"></div></div><div class="bar-val">$88.5B</div></div>
+          <div class="bar-row"><div class="bar-name">Alphabet</div><div class="track"><div class="fill" style="--w:55.7%"></div></div><div class="bar-val">$49.3B</div></div>
+          <div class="bar-row"><div class="bar-name">Meta</div><div class="track"><div class="fill" style="--w:49.5%"></div></div><div class="bar-val">$43.9B</div></div>
+          <div class="bar-row"><div class="bar-name">Apple</div><div class="track"><div class="fill" style="--w:35.4%"></div></div><div class="bar-val">$31.4B</div></div>
+          <div class="bar-row"><div class="bar-name">Microsoft</div><div class="track"><div class="fill" style="--w:33.3%"></div></div><div class="bar-val">$29.5B</div></div>
+        </div>
+        <p class="chart-note">* 亚马逊不是纯研发口径。数据：Amazon、Alphabet、Meta、Apple、Microsoft FY2024 10-K。FY2024 报告线差额：Amazon 比 Alphabet 多 $39.2B。</p>
+      </div>
+      <div class="compare-strip">
+        <div class="compare-item"><b>26.7%</b><span>Meta 研发 / 营收</span></div>
+        <div class="compare-item"><b>20.8%</b><span>华为研发 / 营收</span></div>
+        <div class="compare-item"><b>14.1%</b><span>Alphabet 研发 / 营收</span></div>
+        <div class="compare-item"><b>13.9%*</b><span>Amazon 宽口径线 / 营收</span></div>
+      </div>
+      <p class="chart-note">强度口径同样不完全可比；Amazon 的 13.9% 使用宽口径“技术与基础设施”。华为 2024 研发 ¥179.7B，强度 20.8%。</p>
+    </section>
+
+    <section id="discourse">
+      <div class="section-head"><div class="num">04</div><h2>中文语境如何“讲述”这场研发竞赛</h2><p class="section-intro">同一组数字，在中文财经媒体中被组织成三条叙事：冠军叙事、中美竞逐叙事、工程转化叙事。</p></div>
+      <div class="discourse">
+        <article class="lexicon">
+          <h3>高频词背后的立场</h3>
+          <div class="word"><strong>“首度登顶”</strong><p>强调榜首身份的戏剧性变化，但容易省略“首次纳入”和“估算口径”。</p></div>
+          <div class="word"><strong>“持续霸榜”</strong><p>把多年第三方排名压缩为稳定事实，适合传播，却遮蔽不同榜单对 Amazon 的处理差异。</p></div>
+          <div class="word"><strong>“缩小差距”</strong><p>把企业排名提升为国家创新能力叙事；华为成为中国企业的代表性符号。</p></div>
+          <div class="word"><strong>“豪掷”</strong><p>以投资规模制造冲击感，突出资本决心，却未必回答投入如何转化为技术与生产率。</p></div>
+        </article>
+        <div class="lens-list">
+          <article class="lens"><div class="idx">1</div><div><h4>榜首：规模即力量</h4><p>鉅亨網强调 Amazon “首度登顶”，并把美国科技巨头占据前五与“中国缩小与美差距”并置。</p><a href="https://news.cnyes.com/news/id/6297926" target="_blank" rel="noopener">鉅亨網 · 2026-01 ↗</a></div></article>
+          <article class="lens"><div class="idx">2</div><div><h4>冠军：华为作为中国参照物</h4><p>199IT 转述中，华为 €22.94B 位列全球第 6，是唯一进入全球前十的中国企业。</p><a href="http://www.360doc.com/content/26/0105/02/2457585_1167875919.shtml" target="_blank" rel="noopener">199IT / 360doc · 2026-01-03 ↗</a></div></article>
+          <article class="lens"><div class="idx">3</div><div><h4>转化：从钱到机器</h4><p>中文财经报道开始把注意力从榜单转向欧洲物流中心机器人改造与 AI 工程师部署。</p><a href="https://finance.eastmoney.com/a/202606043760501433.html" target="_blank" rel="noopener">财联社 / 东方财富 · 2026-06-04 ↗</a></div></article>
+        </div>
+      </div>
+      <div class="takeaway"><strong>语文判断：标题要从“谁花得最多”升级为“谁把哪一种投入，转成了哪一种能力”。</strong>这能把宣传性排名变成可检验的技术与经济命题。</div>
+    </section>
+
+    <section id="robotics">
+      <div class="section-head"><div class="num">05</div><h2>机械 × 机电 × AI：钱最终变成了什么</h2><p class="section-intro">亚马逊最值得机械电子背景研究的，不是某一台机器人，而是“感知—执行—调度—设施”协同的系统工程。</p></div>
+      <div class="systems">
+        <article class="system wide"><div class="type">SCALE / 规模</div><h3>100 万台机器人</h3><p>2025-06-30 / 07-01 达到第 100 万台，覆盖 <strong>300+ 设施</strong>；相关报道指机器人已辅助 <strong>75%</strong> 的全球配送。</p></article>
+        <article class="system wide"><div class="type">SYSTEM / 系统</div><h3>DeepFleet</h3><p>2025-07 发布的生成式 AI 基础模型，用于协调车队运动；Amazon 声称机器人行驶效率提升 <strong>10%</strong>。这是“AI 不替代机构，而是优化机构群体”。</p></article>
+        <article class="system"><div class="type">MOBILE</div><h3>Proteus</h3><p>首款可与人共同作业的全自主移动机器人；重点是动态环境感知、安全避障与混行。</p></article>
+        <article class="system"><div class="type">MANIPULATION</div><h3>Sparrow / Robin</h3><p>面向单件抓取与视觉吸取分拣；关键研究是视觉、末端执行器、柔顺控制与长尾物体处理。</p></article>
+        <article class="system"><div class="type">TACTILE</div><h3>Vulcan</h3><p>2025-05 发布，Amazon 称其为首款具“触觉”的机器人，把接触反馈引入货物操作。</p></article>
+        <article class="system"><div class="type">STORAGE</div><h3>Sequoia</h3><p>AI 容器化存储系统；Amazon 声称库存入库快至 <strong>75%</strong>，订单处理时间缩短 <strong>25%</strong>。</p></article>
+        <article class="system"><div class="type">HUMANOID PILOT</div><h3>Digit</h3><p>Agility Robotics 双足机器人，处于周转箱回收、拖车卸货等试点阶段；离规模化经济性仍有距离。</p></article>
+        <article class="system"><div class="type">AUTONOMY</div><h3>Zoox</h3><p>2025-09-10 在拉斯维加斯上线公开无人驾驶服务；到约 2026-08，报道为 <strong>&gt;300 万英里、约 100 万乘客</strong>。但 2025-04 软件缺陷碰撞后曾召回 270 辆车修复。</p></article>
+        <article class="system"><div class="type">ECONOMICS</div><h3>25% 成本改善</h3><p>Shreveport 第 12 代履约中心被报道可削减 <strong>25% 履约成本</strong>；Morgan Stanley 估算十年内新一代机器人仓可形成约 <strong>$10B/年</strong>节省，后者属于分析师估算。</p></article>
+      </div>
+      <p class="chart-note">机器人数据来源：HCAMag、GeekWire、GlobeSt、GovTech 等报道，日期与口径见文末。厂商效率数字应在具体仓型、商品结构和峰值工况下复验。</p>
+    </section>
+
+    <section id="tokens">
+      <div class="section-head"><div class="num">06</div><h2>AI 词元经济：亚马逊同时卖“铲子”和用“铲子”</h2><p class="section-intro">它的结构性优势不是拥有一个模型，而是把芯片、云、模型与终端需求接成闭环。</p></div>
+      <div class="pipeline" aria-label="亚马逊 AI 推理经济闭环">
+        <div class="stage"><b>自研芯片</b><span>Trainium / Inferentia / Graviton</span></div>
+        <div class="stage"><b>云基础设施</b><span>AWS + Neuron SDK</span></div>
+        <div class="stage"><b>模型平台</b><span>Bedrock + Nova</span></div>
+        <div class="stage"><b>自有需求</b><span>Alexa+ / Rufus / Q / 零售</span></div>
+        <div class="stage"><b>数据与迭代</b><span>更多负载 → 芯片与模型协同优化</span></div>
+      </div>
+      <div class="definition-grid" style="margin-top:18px">
+        <article class="definition"><span class="tag">Amazon vendor claim</span><h3>Trainium2</h3><p>AWS 声称相对 P5（H100）实例有 30–40% 更好性价比；内部基准称相近吞吐下每词元成本较 A100 集群低 54%。需要按工作负载独立复验。</p></article>
+        <article class="definition"><span class="tag">商业模式差异</span><h3>AWS vs Meta MTIA</h3><p>MTIA 主要服务 Meta 内部推荐与广告；Trainium / Inferentia 被 AWS 对外出租。亚马逊把自研硅片的研发转化为可售云服务。</p></article>
+        <article class="definition"><span class="tag">端到端需求</span><h3>Nova + Alexa+</h3><p>Nova 系列通过 Bedrock 提供；Alexa+ 面向约 6 亿台 Alexa 设备，在 Nova 与 Anthropic Claude 之间路由任务。规模使降本可以快速转成更大的推理量。</p></article>
+      </div>
+      <div class="takeaway"><strong>词元价格下降 ≠ 总资源消耗下降。</strong>更便宜的单词元会激发更长上下文、更多 agent 步骤与更高调用频次。对工程师而言，真正的目标函数是“每个完成任务的总成本”，而非只看“每百万词元单价”。</div>
+    </section>
+
+    <section id="path">
+      <div class="section-head"><div class="num">07</div><h2>与你的专业交叉：四条可落地研究路径</h2><p class="section-intro">机械制造与自动化 / 机械电子工程 × AI，不应只做“给设备加个模型”，而要选择能测量、控制并核算经济性的闭环。</p></div>
+      <div class="pro-grid">
+        <article class="pro-card"><h3>01 多机器人调度与数字孪生</h3><ul><li>把 DeepFleet 式车队协调转化为仿真—优化课题</li><li>指标：拥堵、空驶、能耗、吞吐、故障恢复时间</li><li>方法：离散事件仿真 + 强化学习 / 运筹优化</li></ul></article>
+        <article class="pro-card"><h3>02 灵巧操作与触觉融合</h3><ul><li>从 Sparrow / Vulcan 提炼视觉—力觉—末端执行器协同</li><li>关注透明、软性、不规则物体的长尾失败</li><li>用成功率、损伤率、节拍和换型时间评价</li></ul></article>
+        <article class="pro-card"><h3>03 预测性维护与能效</h3><ul><li>机器人群的电机、电池、减速器与轮组健康管理</li><li>把状态监测模型连接到排程，而非只做故障分类</li><li>目标：减少停机且不把维护成本转移到备件库存</li></ul></article>
+        <article class="pro-card"><h3>04 边云协同推理</h3><ul><li>比较端侧控制、边缘站点与云端模型的延迟与成本</li><li>把“每词元成本”改写为“每完成一次抓取 / 搬运的推理成本”</li><li>同时记录功耗、安全冗余与网络中断下的降级策略</li></ul></article>
+      </div>
+      <div class="takeaway"><strong>最好的切入点：机器人群预测性维护 + 调度联动。</strong>它兼具你的机械故障机理、机电传感、自动化控制与 AI 优化背景，也能把 Amazon 的研发叙事落到可验证的生产率指标。</div>
+    </section>
+
+    <section id="limits">
+      <div class="section-head"><div class="num">08</div><h2>证据边界与核心来源</h2><p class="section-intro">以下不是附带说明，而是这份判断成立的条件。</p></div>
+      <div class="caveats">
+        <div>
+          <ol>
+            <li><strong>纯研发未知：</strong>Amazon 不披露 AWS、芯片、Alexa、机器人、Zoox、Kuiper、Nova 的研发拆分。</li>
+            <li><strong>榜首依赖估算：</strong>JRC 2025 榜单首次纳入 Amazon；€65B 的精确推导未从 PDF 中核验。</li>
+            <li><strong>资本开支另计：</strong>数据中心和履约设施 CapEx 与研发费用不是同一口径。</li>
+            <li><strong>厂商基准需复验：</strong>Trainium 的每词元成本与机器人效率数字受工作负载、仓型和软件迁移成本影响。</li>
+            <li><strong>学术缺口：</strong>本轮未找到专门研究 Amazon 研发领导地位的中文学术论文；中文材料主要来自财经、科技与国家媒体。</li>
+          </ol>
+        </div>
+        <div class="source-panel">
+          <h3>核心原始与权威来源</h3>
+          <a href="https://joint-research-centre.ec.europa.eu/jrc-news-and-updates/2025-eu-industrial-rd-investment-scoreboard-2025-12-22_en" target="_blank" rel="noopener">EU JRC · 2025 Industrial R&amp;D Scoreboard（2025-12-22）↗</a>
+          <a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm" target="_blank" rel="noopener">Amazon FY2024 10-K · SEC ↗</a>
+          <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm" target="_blank" rel="noopener">Alphabet FY2024 10-K · SEC ↗</a>
+          <a href="https://www.sec.gov/Archives/edgar/data/1326801/000132680125000017/meta-20241231.htm" target="_blank" rel="noopener">Meta FY2024 10-K · SEC ↗</a>
+          <a href="https://peoplesdaily.pdnews.cn/china/er/30048672984" target="_blank" rel="noopener">华为 2024 年报数据报道 · 人民日报（2025-03-31）↗</a>
+          <a href="https://www.hcamag.com/us/specialization/hr-technology/amazon-officially-deploys-one-millionth-robot/541283" target="_blank" rel="noopener">Amazon 第 100 万台机器人 · HCAMag（2025-07-02）↗</a>
+          <a href="https://www.geekwire.com/2025/amazons-robot-workforce-hits-1-million-heres-what-they-all-do/" target="_blank" rel="noopener">机器人系统梳理 · GeekWire（2025-07）↗</a>
+          <a href="https://www.globest.com/2025/03/14/amazon-boosts-warehouse-efficiency-with-robotic-overhaul/" target="_blank" rel="noopener">机器人仓成本估算 · GlobeSt（2025-03-14）↗</a>
+          <a href="https://www.rdworldonline.com/how-much-does-amazon-invest-in-rd-heres-an-estimate/" target="_blank" rel="noopener">Amazon 研发估算方法讨论 · R&amp;D World ↗</a>
+          <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-amazon-nova-2-sonic.html" target="_blank" rel="noopener">Amazon Nova 2 Sonic · AWS Bedrock Docs ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="shell">研究快照：2026-10-12。所有金额、排名与进展均对应文中所列日期；后续披露可能改变结论。</footer>
+</body>
+</html>
